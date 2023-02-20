@@ -97,12 +97,12 @@
             var costs  = parseFloat($('#val').html()) + to_add;
             $('#val').text(costs.formatMoney(2, '.', ','));
         }, refresh_int * 1000);
-        $('#startstop').text('Stop');
+        $('#startstop').css("background-color", "#990000").text('Stop');
     }
     
     function stop() {
         clearInterval(interval_id);
-        $('#startstop').text('Start');
+        $('#startstop').css("background-color", "#009900").text('Start');
     }
     
     $(document).ready(function(){
