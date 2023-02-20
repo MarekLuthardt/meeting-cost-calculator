@@ -73,10 +73,9 @@
         c = isNaN(c = Math.abs(c)) ? 2 : c, 
         d = d == undefined ? "." : d, 
         t = t == undefined ? "," : t, 
-        s = n < 0 ? "-" : "", 
         i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
         j = (j = i.length) > 3 ? j % 3 : 0;
-       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+       return (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
      };
     
     var interval_id = 0;
@@ -102,7 +101,11 @@
         interval_id = setInterval(function(){ 
             var to_add = (get_cph() / 3600) * refresh_int * get_attendees();
             var costs  = parseFloat($('#val').html()) + to_add;
-            $('#val').text(costs.formatMoney(2, '.', ','));
+            if (costs > 9.99) {
+                $('#val').text(costs.formatMoney(0, '.', ','));
+            } else {
+                $('#val').text(costs.formatMoney(2, '.', ','));
+            }
         }, refresh_int * 1000);
         $('#startstop').css("background-color", "#990000").text('Stop');
     }
