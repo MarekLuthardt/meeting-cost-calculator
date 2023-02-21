@@ -69,12 +69,12 @@
 
     <script>
     Number.prototype.formatMoney = function(c){
-    var n = this, 
-        c = isNaN(c = Math.abs(c)) ? 2 : c, 
-        d = ".", 
-        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
-       return i + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-     };
+      var n = this, 
+          c = (n >= 10) ? 2 : 0, 
+          d = ".", 
+          i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + ""; 
+      return i + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
     
     var interval_id = 0;
     var refresh_int = 1;
@@ -100,9 +100,9 @@
             var to_add = (get_cph() / 3600) * refresh_int * get_attendees();
             var costs  = parseFloat($('#val').html()) + to_add;
             if (costs > 9.99) {
-                $('#val').text(costs.formatMoney(0, '.', ','));
+                $('#val').text(costs.formatMoney(0));
             } else {
-                $('#val').text(costs.formatMoney(2, '.', ','));
+                $('#val').text(costs.formatMoney(2));
             }
         }, refresh_int * 1000);
         $('#startstop').css("background-color", "#990000").text('Stop');
