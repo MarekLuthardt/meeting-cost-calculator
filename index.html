@@ -68,12 +68,8 @@
     </div>
 
     <script>
-    Number.prototype.formatMoney = function(c){
-      var n = this, 
-          c = (n >= 10) ? 2 : 0, 
-          d = ".", 
-          i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + ""; 
-      return i + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    Number.prototype.formatMoney = function(c) {
+      return (parseFloat(this, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
     };
     
     var interval_id = 0;
