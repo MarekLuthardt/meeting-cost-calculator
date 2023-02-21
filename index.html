@@ -15,8 +15,25 @@
     
     <style type="text/css">
     body {
-        background-color: #999999;
+      background-color: #999999;
     }
+    #mainbox {
+      display: block;
+      flex-grow: 0;
+      flex-shrink: 1;
+      flex-basis: auto;
+      align-self: auto;
+      order: 0;
+      border-top: 1rem solid #932835 !important;
+      width: 27em;
+      min-width: 27em;
+      text-align: center;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      background-color: white;
+      color: black;
+      margin: 1em;
+    }  
     #costs, #start_stop, #attendees {
         margin: 20px;
         padding: 20px;
@@ -54,10 +71,10 @@
   </head>
   
   <body>
+    <div id="mainbox">
     <div id="costs"><span id="val">0.00</span>&nbsp;€</div>
 
-    <div id="start_stop">
-        <button id="startstop">Start</button>
+    <button id="startstop">Start</button>
     </div>
 
     <div id="attendees">
