@@ -37,7 +37,6 @@
       align-self: auto;
       order: 0;
       border-top: 1rem solid black !important;
-      min-width: 27em;
       text-align: center;
       border-left: 1px solid black;
       border-right: 1px solid black;
@@ -45,47 +44,52 @@
       color: black;
       margin: 1em;
       padding: 1em;
+      font-size: 1.5em;
+      font-family: 'Roboto Condensed'; 
     }  
       
     #mainbox {
+      background-color: white;
+      min-width: 27em;
     }  
 
     #settings {
-      font-family: 'Roboto Condensed'; 
-      font-size: 150%;
       background-color: white;
+      min-width: 17em;
     }
       
     #costs {
-        margin: 20px;
-        text-align: center;
-        font-family: 'Roboto Condensed'; 
-        background-color: white;
-        font-size: 800%;
+      margin: 20px;
+      text-align: center;
+      font-family: 'Roboto Condensed'; 
+      background-color: white;
+      font-size: 800%;
     }
+
     .plusminus {
-        border-radius: 5em;
-        display: inline-block;
-        cursor: pointer;
-        font-family: 'Roboto Condensed';
-        text-decoration: none;
-        background-color: #BBBBBB;
-        border:1px solid black;
-        font-size: 110%; 
-        min-width: 1.5em;
-        color: black;
+      border-radius: 5em;
+      display: inline-block;
+      cursor: pointer;
+      font-family: 'Roboto Condensed';
+      text-decoration: none;
+      background-color: #BBBBBB;
+      border:1px solid black;
+      font-size: 110%; 
+      min-width: 1.5em;
+      color: black;
     }
+    
     #startstop {
-        background-color: #009900;
-        border:5px solid #000000;
-        font-size: 150%; 
-        padding:0.5em 1.5em;
-        color: #ffffff;
-        border-radius: 5em;
-        display: inline-block;
-        cursor: pointer;
-        font-family: 'Roboto Condensed';
-        text-decoration: none;
+      background-color: #009900;
+      border:5px solid #000000;
+      font-size: 150%; 
+      padding:0.5em 1.5em;
+      color: #ffffff;
+      border-radius: 5em;
+      display: inline-block;
+      cursor: pointer;
+      font-family: 'Roboto Condensed';
+      text-decoration: none;
     }
     </style>
   </head>
@@ -99,10 +103,12 @@
 
       <div class="box" id="settings">
         <div id="attendees">
-          Number of attendees: <button id="a_sub" class="plusminus">-</button>&nbsp;<span id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
+          Number of attendees: <br />
+          <button id="a_sub" class="plusminus">-</button>&nbsp;<span id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
         </div>
         <div id="hourlyrate"> 
-          Hourly rate: <button id="cph_sub" class="plusminus">-</button>&nbsp;<span id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
+          Hourly rate: <br />
+          <button id="cph_sub" class="plusminus">-</button>&nbsp;<span id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
         </div>  
       </div>  
     </div> 
