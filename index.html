@@ -99,16 +99,16 @@
 
       <div class="box" id="settings">
         <div id="attendees">
-        <button id="a_sub" class="plusminus">-</button>&nbsp;<span id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
-        attendees with a rate of 
-        <button id="cph_sub" class="plusminus">-</button>&nbsp;<span id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
-        EUR per hour.
+          Number of attendees: <button id="a_sub" class="plusminus">-</button>&nbsp;<span id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
         </div>
+        <div id="hourlyrate"> 
+          Hourly rate: <button id="cph_sub" class="plusminus">-</button>&nbsp;<span id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
+        </div>  
       </div>  
     </div> 
 
     <script>
-    Number.prototype.formatMoney = function(c) {
+    Number.prototype.formatMoney = function() {
       return (parseFloat(this, 10).toFixed(this < 10 ? 2 : 0).toString());
     };
     
@@ -135,11 +135,7 @@
         interval_id = setInterval(function(){ 
             var to_add = (get_cph() / 3600) * refresh_int * get_attendees();
             var costs  = parseFloat($('#val').html()) + to_add;
-            if (costs > 9.99) {
-                $('#val').text(costs.formatMoney(0));
-            } else {
-                $('#val').text(costs.formatMoney(2));
-            }
+            $('#val').text(costs.formatMoney());
         }, refresh_int * 1000);
         $('#startstop').css("background-color", "#990000").text('Stop');
     }
@@ -164,7 +160,7 @@
             }
         });
         $('#cph_add').click(function(){
-            if (get_cph() < 100) {
+            if (get_cph() < 500) {
                 set_cph(get_cph() + 5);
             }
         });
