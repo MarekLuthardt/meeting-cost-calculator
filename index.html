@@ -17,6 +17,16 @@
     body {
       background-color: #999999;
     }
+    #frame {
+      margin: 0px auto;
+      border: 0 !important;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: normal;
+      align-content: center;
+    }  
     #mainbox {
       display: block;
       flex-grow: 0;
@@ -71,18 +81,19 @@
   </head>
   
   <body>
-    <div id="mainbox">
-    <div id="costs"><span id="val">0.00</span>&nbsp;€</div>
+    <div id="frame">
+      <div id="mainbox">
+        <div id="costs"><span id="val">0.00</span>&nbsp;€</div>
+        <button id="startstop">Start</button>
+      </div>
 
-    <button id="startstop">Start</button>
-    </div>
-
-    <div id="attendees">
+      <div id="attendees">
         <button id="a_sub" class="plusminus">-</button>&nbsp;<span id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
         attendees with a rate of 
         <button id="cph_sub" class="plusminus">-</button>&nbsp;<span id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
         EUR per hour.
-    </div>
+      </div>
+    </div> 
 
     <script>
     Number.prototype.formatMoney = function(c) {
