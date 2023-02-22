@@ -96,18 +96,20 @@
       font-family: 'Roboto Condensed';
       text-decoration: none;
       min-width: 5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
     }
       
     .running {
       border: 0.2em solid #660000;
       background-color: #990000;
-      box-shadow: 0 0 1em #990000;
+      box-shadow: 0 0 0.5em #990000;
     }
       
     .stopped {
       border: 0.2em solid green;  
       background-color: #009900;      
-      box-shadow: 0 0 1em #009900;
+      box-shadow: 0 0 0.5em #009900;
     }
     </style>
   </head>
@@ -127,6 +129,12 @@
         <div id="hourlyrate"> 
           <p class="label">Hourly rate</p>
           <button id="cph_sub" class="plusminus">-</button>&nbsp;<span class="setting_figure" id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
+        </div>  
+        <div id="currencies">
+          <button id="EUR" class="plusminus">&euro;</button>
+          <button id="USD" class="plusminus">&dollar;</button>          
+          <button id="GBP" class="plusminus">&pound;</button>
+          <button id="CHF" class="plusminus">CHF</button> 
         </div>  
       </div>  
     </div> 
