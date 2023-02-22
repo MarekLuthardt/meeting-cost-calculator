@@ -159,7 +159,6 @@
     };
     
     var interval_id = 0;
-    var refresh_int = 1;
     var total_costs = 0;  
     
     function get_attendees() {
@@ -180,10 +179,10 @@
     
     function start() {
         interval_id = setInterval(function(){ 
-            var to_add = (get_cph() / 3600) * refresh_int * get_attendees();
-            var costs  = total_costs + to_add;
+            var to_add = (get_cph() / 3600) * get_attendees();
+            total_costs  = total_costs + to_add;
             $('#val').text(total_costs.formatMoney());
-        }, refresh_int * 1000);
+        }, 1000);
         $('#startstop').removeClass("stopped").addClass("running").text('Stop');
     }
     
