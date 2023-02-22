@@ -99,13 +99,13 @@
     }
       
     .running {
-      border: 0.2em solid green;
-      background-color: #009900;
+      border: 0.2em solid red;
+      background-color: #990000;
     }
       
     .stopped {
-      border: 0.2em solid red;  
-      background-color: #990000;      
+      border: 0.2em solid green;  
+      background-color: #009900;      
     }
     </style>
   </head>
@@ -186,7 +186,7 @@
                 set_cph(get_cph() + 5);
             }
         });
-        $('#startstop').css("background-color", "#009900").click(function(){
+        $('#startstop').click(function(){
             if (is_running()) {
                 stop();
             } else {
