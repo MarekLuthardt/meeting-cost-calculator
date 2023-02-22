@@ -54,7 +54,15 @@
     #settings {
       background-color: white;
       min-width: 10em;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
     }
+      
+    .setting_figure {
+      min-width: 2em;
+    }  
       
     #costs {
       margin: 0.1em;
@@ -99,11 +107,11 @@
       <div class="box" id="settings">
         <div id="attendees">
           Number of attendees: <br />
-          <button id="a_sub" class="plusminus">-</button>&nbsp;<span id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
+          <button id="a_sub" class="plusminus">-</button>&nbsp;<span class="setting_figure" id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
         </div>
         <div id="hourlyrate"> 
           Hourly rate: <br />
-          <button id="cph_sub" class="plusminus">-</button>&nbsp;<span id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
+          <button id="cph_sub" class="plusminus">-</button>&nbsp;<span class="setting_figure" id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
         </div>  
       </div>  
     </div> 
