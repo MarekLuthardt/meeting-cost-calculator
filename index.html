@@ -85,6 +85,19 @@
       min-width: 1.5em;
       color: black;
     }
+      
+    button.currency {
+      border-radius: 0.3em;
+      display: inline-block;
+      cursor: pointer;
+      font-family: 'Roboto Condensed';
+      text-decoration: none;
+      background-color: #BBBBBB;
+      border: 0.1em solid #999999;
+      font-size: 1.1em;
+      min-width: 1.5em;
+      color: black;
+    }  
     
     #startstop {
       font-size: 150%; 
@@ -132,6 +145,7 @@
           <button id="cph_sub" class="plusminus">-</button>&nbsp;<span class="setting_figure" id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
         </div>  
         <div id="currencies">
+          <p class="label">Currency</p>
           <button id="EUR" class="currency">&euro;</button>
           <button id="USD" class="currency">&dollar;</button>          
           <button id="GBP" class="currency">&pound;</button>
