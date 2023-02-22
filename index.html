@@ -117,7 +117,8 @@
   <body>
     <div id="frame">
       <div class="box" id="mainbox">
-        <div id="costs"><span id="val">0.00</span>&nbsp;€</div>
+        <h1>This meeting costs</h1>
+        <div id="costs"><span id="val">0.00</span>&nbsp;<span class="currency">€</span></div>
         <button id="startstop" class="stopped">Start</button>
       </div>
 
@@ -127,14 +128,13 @@
           <button id="a_sub" class="plusminus">-</button>&nbsp;<span class="setting_figure" id="current_attendees">3</span>&nbsp;<button id="a_add" class="plusminus">+</button> 
         </div>
         <div id="hourlyrate"> 
-          <p class="label">Hourly rate</p>
+          <p class="label">Hourly rate in <span class="currency">€</span></p>
           <button id="cph_sub" class="plusminus">-</button>&nbsp;<span class="setting_figure" id="cph">45</span>&nbsp;<button id="cph_add" class="plusminus">+</button>
         </div>  
         <div id="currencies">
-          <button id="EUR" class="plusminus">&euro;</button>
-          <button id="USD" class="plusminus">&dollar;</button>          
-          <button id="GBP" class="plusminus">&pound;</button>
-          <button id="CHF" class="plusminus">CHF</button> 
+          <button id="EUR" class="currency">&euro;</button>
+          <button id="USD" class="currency">&dollar;</button>          
+          <button id="GBP" class="currency">&pound;</button>
         </div>  
       </div>  
     </div> 
@@ -195,6 +195,9 @@
             if (get_cph() < 500) {
                 set_cph(get_cph() + 5);
             }
+        });
+        $('button.currency').click(function(){
+            $('span.currency').html($(this).text());
         });
         $('#startstop').click(function(){
             if (is_running()) {
