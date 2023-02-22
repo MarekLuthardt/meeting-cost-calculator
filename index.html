@@ -87,8 +87,6 @@
     }
     
     #startstop {
-      background-color: #009900;
-      border:5px solid #000000;
       font-size: 150%; 
       padding:0.5em 1.5em;
       color: #ffffff;
@@ -97,6 +95,17 @@
       cursor: pointer;
       font-family: 'Roboto Condensed';
       text-decoration: none;
+      min-width: 5em;
+    }
+      
+    .running {
+      border: 0.2em solid green;
+      background-color: #009900;
+    }
+      
+    .stopped {
+      border: 0.2em solid red;  
+      background-color: #990000;      
     }
     </style>
   </head>
@@ -105,7 +114,7 @@
     <div id="frame">
       <div class="box" id="mainbox">
         <div id="costs"><span id="val">0.00</span>&nbsp;€</div>
-        <button id="startstop">Start</button>
+        <button id="startstop" class="stopped">Start</button>
       </div>
 
       <div class="box" id="settings">
@@ -150,12 +159,12 @@
             var costs  = parseFloat($('#val').html()) + to_add;
             $('#val').text(costs.formatMoney());
         }, refresh_int * 1000);
-        $('#startstop').css("background-color", "#990000").text('Stop');
+        $('#startstop').removeClass("stopped").addClass("running").text('Stop');
     }
     
     function stop() {
         clearInterval(interval_id);
-        $('#startstop').css("background-color", "#009900").text('Start');
+        $('#startstop').removeClass("running").addClass("stopped").text('Start');
     }
     
     $(document).ready(function(){
