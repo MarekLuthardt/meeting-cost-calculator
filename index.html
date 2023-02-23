@@ -48,7 +48,7 @@
       color: black;
       margin: 1em;
       padding: 1em;
-      font-size: 1.5em;
+      font-size: 1.2em;
       font-family: 'Roboto Condensed'; 
       box-shadow: 0 0 1em #333333;
     }  
@@ -172,7 +172,7 @@
           s -= h * 3600;
       var m = Math.floor(s / 60); 
           s -= m * 60;
-     return h + ":" + (m < 10 ? '0' + m : m) + ":" + (s < 10 ? '0' + s : s); 
+     return (h < 10 ? '0' + h : h) + ":" + (m < 10 ? '0' + m : m) + ":" + (s < 10 ? '0' + s : s); 
     };
       
     
@@ -213,6 +213,11 @@
     }
     
     $(document).ready(function(){
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+          get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let duration = params.d; // "some_value"
+
         $('#a_add').click(function(){
             set_attendees(get_attendees() + 1);
         });
@@ -231,6 +236,8 @@
                 set_cph(get_cph() + 5);
             }
         });
+
+
         $('button.currency').click(function(){
             $('span.currency').html($(this).text());
         });
