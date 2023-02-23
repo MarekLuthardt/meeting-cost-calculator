@@ -140,7 +140,7 @@
       <div class="box" id="mainbox">
         <h1>This meeting costs</h1>
         <div id="costs"><span id="val">0.00</span>&nbsp;<span class="currency">€</span></div>
-        <p id="label_duration">Duration: <span id="duration"></span></p>
+        <p id="label_duration">Duration: <span id="duration">00:00:00</span></p>
         <button id="startstop" class="stopped">Start</button>
       </div>
 
@@ -183,7 +183,7 @@
     var total_costs = 0;  
     var duration = 0;
     var attendees = (parseInt(params.a) >= 2 && parseInt(params.a) <= 500) ? parseInt(params.a) : 3;  
-    var hourly_rate = (parseInt(params.r) >= 15 && parseInt(params.a) <= 500) ? parseInt(params.a) : 40;  
+    var hourly_rate = (parseInt(params.r) >= 15 && parseInt(params.r) <= 500) ? parseInt(params.r) : 40;  
     
     function get_attendees() {
         return parseInt($('#current_attendees').html(),10);
