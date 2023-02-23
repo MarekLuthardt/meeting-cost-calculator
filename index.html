@@ -175,10 +175,13 @@
      return (h < 10 ? '0' + h : h) + ":" + (m < 10 ? '0' + m : m) + ":" + (s < 10 ? '0' + s : s); 
     };
       
-    
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+     
     var interval_id = 0;
     var total_costs = 0;  
-    var duration = 0;  
+    var duration = parseInt(params.d) > 0 ? parseInt(params.d) : 0;  
     
     function get_attendees() {
         return parseInt($('#current_attendees').html(),10);
@@ -213,11 +216,6 @@
     }
     
     $(document).ready(function(){
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-          get: (searchParams, prop) => searchParams.get(prop),
-        });
-        let duration = params.d; // "some_value"
-
         $('#a_add').click(function(){
             set_attendees(get_attendees() + 1);
         });
