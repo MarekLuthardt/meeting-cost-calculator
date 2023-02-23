@@ -166,6 +166,15 @@
     Number.prototype.formatMoney = function() {
       return (parseFloat(this, 10).toFixed(this < 10 ? 2 : 0).toString());
     };
+    Number.prototype.formatDuration = function() {
+      var s = this;
+      var h = Math.floor(s / 3600); 
+          s -= h * 3600;
+      var m = Math.floor(s / 60); 
+          s -= m * 60;
+     return h + ":" + (m < 10 ? '0' + m : m) + ":" + (s < 10 ? '0' + s : s); 
+    };
+      
     
     var interval_id = 0;
     var total_costs = 0;  
@@ -193,7 +202,7 @@
             var to_add = (get_cph() / 3600) * get_attendees();
             total_costs  = total_costs + to_add;
             $('#val').text(total_costs.formatMoney());
-            $('#duration').text(duration);
+            $('#duration').text(duration.formatDuration());
         }, 1000);
         $('#startstop').removeClass("stopped").addClass("running").text('Stop');
     }
