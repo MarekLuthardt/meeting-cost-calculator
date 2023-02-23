@@ -181,7 +181,9 @@
      
     var interval_id = 0;
     var total_costs = 0;  
-    var duration = parseInt(params.d) > 0 ? parseInt(params.d) : 0;  
+    var duration = 0;
+    var attendees = (parseInt(params.a) >= 2 && parseInt(a) <= 500) ? parseInt(params.a) : 3;  
+    var hourly_rate = (parseInt(params.r) >= 15 && parseInt(a) <= 500) ? parseInt(params.a) : 40;  
     
     function get_attendees() {
         return parseInt($('#current_attendees').html(),10);
@@ -199,6 +201,9 @@
         return ($('#startstop').html() !== 'Start');
     }
     
+    set_attendees(attendees);
+    set_cph(hourly_rate);
+      
     function start() {
         interval_id = setInterval(function(){
             duration = duration + 1;
