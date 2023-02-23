@@ -55,7 +55,7 @@
       
     #mainbox {
       background-color: white;
-      min-width: 20em;
+      min-width: 18em;
     }  
 
     #settings {
@@ -78,7 +78,7 @@
       
     #costs {
       margin: 0.1em;
-      font-size: 5em;
+      font-size: 4em;
     }
 
     .plusminus {
@@ -182,8 +182,8 @@
     var interval_id = 0;
     var total_costs = 0;  
     var duration = 0;
-    var attendees = (parseInt(params.a) >= 2 && parseInt(a) <= 500) ? parseInt(params.a) : 3;  
-    var hourly_rate = (parseInt(params.r) >= 15 && parseInt(a) <= 500) ? parseInt(params.a) : 40;  
+    var attendees = (parseInt(params.a) >= 2 && parseInt(params.a) <= 500) ? parseInt(params.a) : 3;  
+    var hourly_rate = (parseInt(params.r) >= 15 && parseInt(params.a) <= 500) ? parseInt(params.a) : 40;  
     
     function get_attendees() {
         return parseInt($('#current_attendees').html(),10);
