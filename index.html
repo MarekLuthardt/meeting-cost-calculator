@@ -164,7 +164,7 @@
 
     <script>
     Number.prototype.formatMoney = function() {
-      return (parseFloat(this, 10).toFixed(this < 10 ? 2 : 0).toString());
+      return (parseFloat(this, 10).toFixed(this < 100 ? 2 : 0).toString());
     };
     Number.prototype.formatDuration = function() {
       var s = this;
