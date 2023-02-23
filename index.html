@@ -140,6 +140,7 @@
       <div class="box" id="mainbox">
         <h1>This meeting costs</h1>
         <div id="costs"><span id="val">0.00</span>&nbsp;<span class="currency">€</span></div>
+        <p id="label_duration">Duration: <span id="duration"></span></p>
         <button id="startstop" class="stopped">Start</button>
       </div>
 
@@ -168,6 +169,7 @@
     
     var interval_id = 0;
     var total_costs = 0;  
+    var duration = 0;  
     
     function get_attendees() {
         return parseInt($('#current_attendees').html(),10);
@@ -186,10 +188,12 @@
     }
     
     function start() {
-        interval_id = setInterval(function(){ 
+        interval_id = setInterval(function(){
+            duration = duration + 1;
             var to_add = (get_cph() / 3600) * get_attendees();
             total_costs  = total_costs + to_add;
             $('#val').text(total_costs.formatMoney());
+            $('#duration').text(duration);
         }, 1000);
         $('#startstop').removeClass("stopped").addClass("running").text('Stop');
     }
