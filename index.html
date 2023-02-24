@@ -285,6 +285,9 @@
             $('span.currency').html($(this).text());
             update_url();
         });
+      
+        $('button#' + currency_code).click();
+       
         $('#startstop').click(function(){
             if (is_running()) {
                 stop();
