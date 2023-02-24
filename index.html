@@ -188,7 +188,7 @@
       
     <div id="miscframe">
       <div class="box" id="misc">
-        <span id="url">https://meeting-costs.info</span> <button id="copy_url">&#128203;</button>  
+        <a id="url">https://meeting-costs.info</a> 
       </div>  
     </div> 
 
@@ -214,6 +214,7 @@
     var duration = 0;
     var attendees = (parseInt(params.a) >= 2 && parseInt(params.a) <= 500) ? parseInt(params.a) : 3;  
     var hourly_rate = (parseInt(params.r) >= 15 && parseInt(params.r) <= 500) ? parseInt(params.r) : 40;  
+    var currency_code = params.c ? params.c : 'EUR';  
     
     function get_attendees() {
         return parseInt($('#current_attendees').html(),10);
@@ -231,7 +232,8 @@
         return ($('#startstop').html() !== 'Start');
     }
     function update_url() {
-        $('#url').text('https://meeting-costs.info?a=' + get_attendees() + '&r=' + get_cph());
+        var url = 'https://meeting-costs.info?a=' + get_attendees() + '&r=' + get_cph() + '&c=' + currency_code;
+        $('#url').text(url).attr('href', url);
     }
     
     set_attendees(attendees);
@@ -279,7 +281,9 @@
         update_url();
 
         $('button.currency').click(function(){
+            currency_code = $(this).attr('id'); 
             $('span.currency').html($(this).text());
+            update_url();
         });
         $('#startstop').click(function(){
             if (is_running()) {
