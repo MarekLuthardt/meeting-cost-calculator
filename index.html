@@ -85,12 +85,15 @@
     }
      
     #misc {
-      background-color: white;
-      width: 29em;
-      font-size: 1em; 
-      border-color: #666666;
-      border-top: 1rem solid #666666 !important;
+      background-color: #CCCCCC;
+      width: 100%;
+      border-color: #555555;
+      border-top: 1rem solid #555555 !important;
     }
+      
+    #url {
+      font-size: 80%;
+    }  
       
     .setting_figure {
       min-width: 2em;
@@ -185,7 +188,7 @@
       
     <div id="miscframe">
       <div class="box" id="misc">
-        URL: <span id="url">https://meeting-costs.info</span>  
+        <span id="url">https://meeting-costs.info</span> <button id="copy_url">&#128203;</button>  
       </div>  
     </div> 
 
@@ -228,7 +231,7 @@
         return ($('#startstop').html() !== 'Start');
     }
     function update_url() {
-        $('#url').text('https://meeting-costs.info?a=' + attendees + '&r=' + hourly_rate);
+        $('#url').text('https://meeting-costs.info?a=' + get_attendees() + '&r=' + get_cph());
     }
     
     set_attendees(attendees);
@@ -273,7 +276,7 @@
                 update_url();
             }
         });
-
+        update_url();
 
         $('button.currency').click(function(){
             $('span.currency').html($(this).text());
