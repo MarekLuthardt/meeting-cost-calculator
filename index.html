@@ -239,7 +239,7 @@
         return $('#cph').html(i);
     }
     function is_running() {
-        return ($('#startstop').html() !== 'Start');
+        return ($('#startstop').html() == 'Stop');
     }
     function update_url() {
         var url = 'https://meeting-costs.info?a=' + get_attendees() + '&r=' + get_cph() + '&c=' + currency_code;
