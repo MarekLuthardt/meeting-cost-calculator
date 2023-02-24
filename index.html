@@ -26,7 +26,7 @@
       background-color: #999999;
     }
       
-    #frame {
+    #topframe {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -37,6 +37,17 @@
       margin: 0 auto;
     } 
 
+    #miscframe {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: normal;
+      align-content: center;
+      max-width: 40em;
+      margin: 0 auto;
+    } 
+      
     .box {
       flex-grow: 0;
       flex-shrink: 1;
@@ -144,7 +155,7 @@
   </head>
   
   <body>
-    <div id="frame">
+    <div id="topframe">
       <div class="box" id="mainbox">
         <h1>This meeting costs</h1>
         <div id="costs"><span id="val">0.00</span>&nbsp;<span class="currency">€</span></div>
@@ -168,7 +179,9 @@
           <button id="GBP" class="currency">&pound;</button>
         </div>  
       </div>  
+    </div>  
       
+    <div id="miscframe">
       <div class="box" id="misc">
         URL: <span id="url">https://meeting-costs.info</span>  
       </div>  
