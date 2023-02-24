@@ -39,7 +39,7 @@
 
     #miscframe {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
       align-items: normal;
@@ -88,6 +88,8 @@
       background-color: white;
       width: 29em;
       font-size: 1em; 
+      border-color: #666666;
+      border-top: 1rem solid #666666 !important;
     }
       
     .setting_figure {
@@ -225,6 +227,9 @@
     function is_running() {
         return ($('#startstop').html() !== 'Start');
     }
+    function update_url() {
+        $('#url').text('https://meeting-costs.info?a=' + attendees + '&r=' + hourly_rate);
+    }
     
     set_attendees(attendees);
     set_cph(hourly_rate);
@@ -248,20 +253,24 @@
     $(document).ready(function(){
         $('#a_add').click(function(){
             set_attendees(get_attendees() + 1);
+            update_url();
         });
         $('#a_sub').click(function(){
             if (get_attendees() > 2) {
                 set_attendees(get_attendees() - 1);
+                update_url(); 
             }
         });
         $('#cph_sub').click(function(){
             if (get_cph() > 30) {
                 set_cph(get_cph() - 5);
+                update_url();
             }
         });
         $('#cph_add').click(function(){
             if (get_cph() < 500) {
                 set_cph(get_cph() + 5);
+                update_url();
             }
         });
 
