@@ -190,6 +190,14 @@
       margin-bottom: 0.5em;
     }
       
+    #tips {
+      text-align: justify;
+    }
+      
+    #tips h2 {
+      margin: 0.4em;
+    }
+      
     .running {
       border: 0.2em solid #660000;
       background-color: #990000;
@@ -360,6 +368,7 @@
         });
       
         $('#tips_trigger').click(function() {
+            $(this).slideToggle();
             $('#tips').slideToggle();
         });
     });
