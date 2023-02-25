@@ -234,7 +234,12 @@
     <div id="miscframe">
       <div class="box" id="misc">
         <p>Share these settings: <a id="url">https://meeting-costs.info</a></p>
-        <p>That's too expensive? Want to know how to reduce meeting costs? Here are some tips.</p>
+        <p id="tips_trigger">That's too expensive? Want to reduce meeting costs? Click here to learn how.</p>
+        <p id="tips">
+        <h2>Keep meetings short!</h2>
+        <h2>Invite less people!</h2>
+        <h2>Don't invite those with the highest cost!</h2>        
+        </p>
       </div>  
       <div id="copyright">
         <p>&copy; Marek Luthardt &middot; <a href="mailto:mail@meeting-costs.info">mail@meeting-costs.info</a></p>
@@ -343,6 +348,10 @@
             } else {
                 start();
             }
+        });
+      
+        $('#tips_trigger').click(function() {
+            $('#tips').slideToggle();
         });
     });
     </script>
