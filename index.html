@@ -352,8 +352,11 @@
     function isRunning() {
         return ($('#startstop').html() == 'Stop');
     }
+    function getUrl() {
+        return 'https://this.meeting-costs.info?a=' + getAttendees() + '&r=' + getRatePerHour() + '&c=' + currencyCode;
+    }
     function updateUrl() {
-        var url = 'https://this.meeting-costs.info?a=' + getAttendees() + '&r=' + getRatePerHour() + '&c=' + currencyCode;
+        var url = getUrl();
         $('#url').text(url).attr('href', url);
     }
     
@@ -374,16 +377,18 @@
     }
       
     function start() {
+      _paq.push(['trackEvent', 'StartStop', (lastCostUpdate > 0 ? 'Resume' : 'Start'), getUrl()]);
       lastCostUpdate = Date.now();
       intervalId = setInterval(function(){
         updateCosts();
-      }, 200);
+      }, 1000);
       $('#startstop').removeClass("stopped").addClass("running").text('Stop');
     }
     
     function stop() {
-        clearInterval(intervalId);
-        $('#startstop').removeClass("running").addClass("stopped").text('Resume');
+      _paq.push(['trackEvent', 'StartStop', 'Stop', getUrl()]);
+      clearInterval(intervalId);
+      $('#startstop').removeClass("running").addClass("stopped").text('Resume');
     }
     
     $(document).ready(function(){
