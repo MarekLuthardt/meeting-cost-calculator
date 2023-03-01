@@ -359,12 +359,13 @@
     set_attendees(attendees);
     set_cph(hourly_rate);
 
-    var lastCostUpdate = Date.now(); 
+    var lastCostUpdate = 0; 
       
     function updateCosts() {
       var lastDurationMs = Date.now() - lastCostUpdate;
       var costsToAdd = (get_cph() / 3600000) * get_attendees() * lastDurationMs;
       lastCostUpdate = Date.now();
+      total_costs = total_costs + costsToAdd;
       duration = duration + lastDurationMs;
       var durationSeconds = Math.round(duration / 1000);
       $('#val').text(total_costs.formatMoney());
@@ -372,6 +373,7 @@
     }
       
     function start() {
+      lastCostUpdate = Date.now();
       interval_id = setInterval(function(){
         updateCosts();
       }, 1000);
