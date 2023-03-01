@@ -353,12 +353,12 @@
         return ($('#startstop').html() == 'Stop');
     }
     function updateUrl() {
-        var url = 'https://this.meeting-costs.info?a=' + get_attendees() + '&r=' + get_cph() + '&c=' + currency_code;
+        var url = 'https://this.meeting-costs.info?a=' + getAttendees() + '&r=' + getRatePerHour() + '&c=' + currencyCode;
         $('#url').text(url).attr('href', url);
     }
     
-    set_attendees(attendees);
-    set_cph(hourly_rate);
+    setAttendees(attendees);
+    setRatePerHour(hourlyRate);
 
     var lastCostUpdate = 0; 
       
@@ -382,7 +382,6 @@
     }
     
     function stop() {
-        updateCosts();
         clearInterval(intervalId);
         $('#startstop').removeClass("running").addClass("stopped").text('Resume');
     }
