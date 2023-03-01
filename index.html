@@ -316,6 +316,7 @@
     Number.prototype.formatMoney = function() {
       return (parseFloat(this, 10).toFixed(this < 100 ? 2 : 0).toString());
     };
+      
     Number.prototype.formatDuration = function() {
       var s = this;
       var h = Math.floor(s / 3600); 
@@ -329,29 +330,29 @@
       get: (searchParams, prop) => searchParams.get(prop),
     });
      
-    var interval_id = 0;
-    var total_costs = 0;  
+    var intervalId = 0;
+    var totalCosts = 0;  
     var duration = 0;
     var attendees = (parseInt(params.a) >= 2 && parseInt(params.a) <= 500) ? parseInt(params.a) : 3;  
-    var hourly_rate = (parseInt(params.r) >= 15 && parseInt(params.r) <= 500) ? parseInt(params.r) : 40;  
-    var currency_code = params.c ? params.c : 'EUR';  
+    var hourlyRate = (parseInt(params.r) >= 15 && parseInt(params.r) <= 500) ? parseInt(params.r) : 40;  
+    var currencyCode = params.c ? params.c : 'EUR';  
     
-    function get_attendees() {
+    function getAttendees() {
         return parseInt($('#current_attendees').html(),10);
     }
-    function set_attendees(n) {
+    function setAttendees(n) {
         $('#current_attendees').html(n);
     }
-    function get_cph() {
+    function getRatePerHour() {
         return parseInt($('#cph').html(),10);
     }
-    function set_cph(i) {
+    function setRatePerHour(i) {
         return $('#cph').html(i);
     }
-    function is_running() {
+    function isRunning() {
         return ($('#startstop').html() == 'Stop');
     }
-    function update_url() {
+    function updateUrl() {
         var url = 'https://this.meeting-costs.info?a=' + get_attendees() + '&r=' + get_cph() + '&c=' + currency_code;
         $('#url').text(url).attr('href', url);
     }
@@ -363,18 +364,18 @@
       
     function updateCosts() {
       var lastDurationMs = Date.now() - lastCostUpdate;
-      var costsToAdd = (get_cph() / 3600000) * get_attendees() * lastDurationMs;
+      var costsToAdd = (getRatePerHour() / 3600000) * getAttendees() * lastDurationMs;
       lastCostUpdate = Date.now();
-      total_costs = total_costs + costsToAdd;
+      totalCosts = totalCosts + costsToAdd;
       duration = duration + lastDurationMs;
       var durationSeconds = Math.round(duration / 1000);
-      $('#val').text(total_costs.formatMoney());
+      $('#val').text(totalCosts.formatMoney());
       $('#duration').text(durationSeconds.formatDuration());
     }
       
     function start() {
       lastCostUpdate = Date.now();
-      interval_id = setInterval(function(){
+      intervalId = setInterval(function(){
         updateCosts();
       }, 1000);
       $('#startstop').removeClass("stopped").addClass("running").text('Stop');
@@ -382,45 +383,46 @@
     
     function stop() {
         updateCosts();
-        clearInterval(interval_id);
+        clearInterval(intervalId);
         $('#startstop').removeClass("running").addClass("stopped").text('Resume');
     }
     
     $(document).ready(function(){
         $('#a_add').click(function(){
-            set_attendees(get_attendees() + 1);
-            update_url();
+            setAttendees(getAttendees() + 1);
+            updateUrl();
         });
         $('#a_sub').click(function(){
-            if (get_attendees() > 2) {
-                set_attendees(get_attendees() - 1);
-                update_url(); 
+            if (getAttendees() > 2) {
+                setAttendees(getAttendees() - 1);
+                updateUrl(); 
             }
         });
         $('#cph_sub').click(function(){
-            if (get_cph() > 30) {
-                set_cph(get_cph() - 5);
-                update_url();
+            if (getRatePerHour() > 30) {
+                setRatePerHour(getRatePerHour() - 5);
+                updateUrl();
             }
         });
         $('#cph_add').click(function(){
-            if (get_cph() < 500) {
-                set_cph(get_cph() + 5);
-                update_url();
+            if (getRatePerHour() < 500) {
+                setRatePerHour(getRatePerHour() + 5);
+                updateUrl();
             }
         });
-        update_url();
+      
+        updateUrl();
 
         $('button.currency').click(function(){
-            currency_code = $(this).attr('id'); 
+            currencyCode = $(this).attr('id'); 
             $('span.currency').html($(this).text());
-            update_url();
+            updateUrl();
         });
       
-        $('button#' + currency_code).click();
+        $('button#' + currencyCode).click();
        
         $('#startstop').click(function(){
-            if (is_running()) {
+            if (isRunning()) {
                 stop();
             } else {
                 start();
