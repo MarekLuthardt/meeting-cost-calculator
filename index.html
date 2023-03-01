@@ -358,19 +358,28 @@
     
     set_attendees(attendees);
     set_cph(hourly_rate);
+
+    var lastCostUpdate = Date.now(); 
+      
+    function updateCosts() {
+      var lastDurationMs = Date.now() - lastCostUpdate;
+      var costsToAdd = (get_cph() / 3600000) * get_attendees() * lastDurationMs;
+      lastCostUpdate = Date.now();
+      duration = duration + lastDurationMs;
+      var durationSeconds = Math.round(duration / 1000);
+      $('#val').text(total_costs.formatMoney());
+      $('#duration').text(durationSeconds.formatDuration());
+    }
       
     function start() {
-        interval_id = setInterval(function(){
-            duration = duration + 1;
-            var to_add = (get_cph() / 3600) * get_attendees();
-            total_costs  = total_costs + to_add;
-            $('#val').text(total_costs.formatMoney());
-            $('#duration').text(duration.formatDuration());
-        }, 1000);
-        $('#startstop').removeClass("stopped").addClass("running").text('Stop');
+      interval_id = setInterval(function(){
+        updateCosts();
+      }, 1000);
+      $('#startstop').removeClass("stopped").addClass("running").text('Stop');
     }
     
     function stop() {
+        updateCosts();
         clearInterval(interval_id);
         $('#startstop').removeClass("running").addClass("stopped").text('Resume');
     }
